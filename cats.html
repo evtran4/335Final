@@ -25,11 +25,13 @@
                 .then((data) => text.innerHTML = data.slip.advice);  
         }
         else if(chosenName == "Dennis"){
-            fetch("https://v2.jokeapi.dev/joke/Any?type=single")
+            fetch("https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single")
                 .then((response) => response.json())  
                 .then((data) => text.innerHTML = data.joke);  
         }
     }
+    //https://evilinsult.com/generate_insult.php?lang=en&type=json
+    //https://uselessfacts.jsph.pl/api/v2/facts/random
 </script>
 
 <style>
