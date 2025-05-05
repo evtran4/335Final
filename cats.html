@@ -1,0 +1,40 @@
+<body>
+    <img src = "none.jpg" id="cat">
+    <h3 id = "name">No Cat</h3>
+    <p id = "text">None</p>
+    <button onclick="switchCat()">Switch Cat</button>
+</body>
+
+<script>
+    catNames = ["All knowing Cat", "Dennis"]
+    function switchCat(){
+        let cat = document.getElementById("cat")
+        let name = document.getElementById("name")
+        let text = document.getElementById("text")
+        console.log("hi")
+        fetch("https://api.thecatapi.com/v1/images/search")
+            .then((response) => response.json())  
+            .then((data) => cat.src = data[0].url);   
+
+        let chosenName = catNames[Math.floor(Math.random() * (catNames.length-1 - 0 + 1)) + 0]
+        name.innerHTML = chosenName
+        if (chosenName == "All knowing Cat"){
+            console.log("all knowing")
+            fetch("https://api.adviceslip.com/advice")
+                .then((response) => response.json())  
+                .then((data) => text.innerHTML = data.slip.advice);  
+        }
+        else if(chosenName == "Dennis"){
+            fetch("https://v2.jokeapi.dev/joke/Any?type=single")
+                .then((response) => response.json())  
+                .then((data) => text.innerHTML = data.joke);  
+        }
+    }
+</script>
+
+<style>
+    img{
+        width: 300px;
+        height: 200px;
+    }
+</style>
