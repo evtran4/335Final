@@ -1,0 +1,28 @@
+{
+  "name": "335final",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/evtran4/335Final#readme",
+  "bugs": {
+    "url": "https://github.com/evtran4/335Final/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evtran4/335Final.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "quoteGame.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongodb": "^6.16.0",
+    "path": "^0.12.7"
+  }
+}
