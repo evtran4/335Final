@@ -4,70 +4,118 @@
     <title>Game</title>
     <meta charset="utf-8" />
   </head>
-
   <body>
     <h3 id="name">Donald Trump or Kanye West?</h3>
     <p id="question">None</p>
-    <button onclick="checkAns('kanye')">Kanye</button><button onclick="checkAns('trump')">Trump</button><br/>
-    Score: <p id="score">0</p>
-    Lives: <p id="lives">3</p>
+    <button onclick="checkAns('kanye')">Kanye</button>
+    <button onclick="checkAns('trump')">Trump</button><br />
+    <div class="stats">
+      Score: <p id="score">0</p>
+      Lives: <p id="lives">3</p>
+    </div>
+
+    <div id = "endGame" style="display:none;">
+      <form method="post">
+        <input type="hidden" id="scoreInput" name="score" value="0">
+        <input type="hidden" id="catUrl" name="url" value="0">
+        <input type="text" id="name" name = "name" placeholder="Name">
+        <img src = "none.jpg" alt = "none" name = "cat" id="cat">
+        <button type="button" onclick="switchCat()">Switch Cat</button>
+        <input type="submit">
+      </form>
+    </div>
+
+    <script>
+      let answers = ["Kanye", "Trump"];
+      let answer = "";
+      let score = 0;
+      let lives = 3;
+      let question = document.getElementById("question");
+
+      function generateQuestion() {
+        if (lives > 0) {
+          answer = answers[Math.floor(Math.random() * answers.length)];
+
+          if (answer === "Trump") {
+            fetch("https://api.whatdoestrumpthink.com/api/v1/quotes/random")
+              .then((res) => res.json())
+              .then((res) => {
+                question.innerHTML = res.message;
+              });
+          } else {
+            fetch("https://api.kanye.rest/")
+              .then((res) => res.json())
+              .then((res) => {
+                question.innerHTML = res.quote;
+              });
+          }
+        } else {
+          endGame();
+        }
+      }
+
+      function endGame(){
+          document.getElementById("endGame").style.display = "block";
+          document.getElementById("scoreInput").value = score;
+          // let name = document.getElementById("name").value
+
+          // if(!name){
+          //   window.alert("invalid");
+          //   return;
+          // }
+          
+          // fetch("/game", {
+          //   method: "POST",
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //   },
+          //   body: JSON.stringify({ name: name, score: Number(score) }),
+          // });
+      }
+
+      function checkAns(ans) {
+        if (answer.toLowerCase() === ans) {
+          console.log("true");
+          score++;
+          document.getElementById("score").innerHTML = score;
+        } else {
+          console.log("false");
+          lives = lives - 1;
+          document.getElementById("lives").innerHTML = lives;
+        }
+        generateQuestion();
+      }
+
+      function switchCat(){
+        console.log("CAT")
+        let cat = document.getElementById("cat")
+
+        fetch("https://api.thecatapi.com/v1/images/search")
+            .then((response) => response.json())  
+            .then((data) => {
+              cat.src = data[0].url;
+              document.getElementById("catUrl").value = data[0].url;
+            });   
+      }
+
+      generateQuestion();
+    </script>
   </body>
+
+  <style>
+    .stats{
+      display: flex;
+      gap: 10px;
+    }
+    .stats > p {
+      margin: 0;
+    }
+    #endGame{
+      background-color: rgb(243, 243, 243);
+    }
+    img{
+      width: 200px;
+      height: 200px;
+    }
+  </style>
 </html>
-
-<script>
-  let answers = ["Kanye", "Trump"];
-  let answer = "";
-  let score = 0;
-  let lives = 3;
-  let question = document.getElementById("question");
-
-  function generateQuestion() {
-    if (lives > 0) {
-      answer = answers[Math.floor(Math.random() * answers.length)];
-
-      if (answer === "Trump") {
-        fetch("https://api.whatdoestrumpthink.com/api/v1/quotes/random")
-          .then((res) => res.json())
-          .then((res) => {
-            question.innerHTML = res.message;
-          });
-      } else {
-        fetch("https://api.kanye.rest/")
-          .then((res) => res.json())
-          .then((res) => {
-            question.innerHTML = res.quote;
-          });
-      }
-    } else {
-      let res = window.prompt(`Game Over! Your score is ${score}. What name would you like to save your score into?`);
-      while (!res) {
-        res = window.prompt("Please input a valid name: ");
-      }
-
-      let name = res;
-
-      fetch("/game", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name: name, score: Number(score) })
-      });
-    }
-  }
-
-  function checkAns(ans) {
-    if (answer.toLowerCase() === ans) {
-      console.log("true");
-      score++;
-      document.getElementById("score").innerHTML = score;
-    } else {
-      console.log("false");
-      lives = lives - 1;
-      document.getElementById("lives").innerHTML = lives;
-    }
-    generateQuestion();
-  }
-
-  generateQuestion();
-</script>

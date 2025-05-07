@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Game</title>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <div class="title">Leader Board:</div>
+
+        <div class="podium">
+            <div class="second">
+                <p>2nd</p>
+                <p><%= second.name %></p>
+                <p><%= second.score %></p>
+                <img src="<%= second.url %>" alt="second place cat" width="100" height="100">
+            </div>
+            <div class="first">
+                <p>1st</p>
+                <p><%= first.name %></p>
+                <p><%= first.score %></p>
+                <img src="<%= first.url %>" alt="first place cat" width="100" height="100">
+            </div>
+            <div class="third">
+                <p>3rd</p>
+                <p><%= third.name %></p>
+                <p><%= third.score %></p>
+                <img src="<%= third.url %>" alt="third place cat" width="100" height="100">
+            </div>
+        </div>
+    </body>
+
+    <style>
+        html, body{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            margin:0px;
+            justify-content: center;
+        }
+        .podium{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+        .first{
+            display: block;
+            height: 500px;
+            width: 200px;
+            background-color: rgb(255, 192, 32);
+        }
+        .second{
+            display: block;
+            height: 400px;
+            width: 200px;
+            background: rgb(238, 238, 238);
+        }
+        .third{
+            display: block;
+            height: 300px;
+            width: 200px;
+            background: rgb(255, 165, 62);
+        }
+        .title{
+            font-size: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</html>

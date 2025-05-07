@@ -43,6 +43,9 @@ async function main(){
 
     app.set("view engine", "ejs");
     app.set("views", path.resolve(__dirname, "templates"));
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(express.json()); 
+
 
     try {
         await client.connect();
@@ -57,15 +60,33 @@ async function main(){
             response.render("game");
         });
 
+        app.get("/leaderBoard", async (request, response) => {
+            try {
+              const topScores = await collection
+                .find({})
+                .sort({ score: -1 })
+                .limit(3)
+                .toArray();
+
+              const variables = {first: topScores[0], second: topScores[1], third: topScores[2] };
+              console.log(variables)
+              response.render("leaderboard", variables);
+            } catch (error) {
+              console.error("error"); 
+            }
+          });
+
         app.post("/game", async (request, response) => {
-            const { name, score } = request.body;
-            await collection.insertOne({ name, score });
+            console.log(request.body)
+            const { name, score, url} = request.body;
+            const numericScore = Number(score);
+            await collection.insertOne({ name, score: numericScore, url });
 
             const variables = { score }; // Pass the score to the template
 
             response.render("gameOver", variables);
         });
-
+          
         // app.get("/reviewApplication", (request, response) => {
         //     const variables = {  pn: portNumber  };
 
