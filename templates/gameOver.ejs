@@ -10,7 +10,44 @@
     Your Score: <%- score %> <br>
     <br><hr>
     <a href="/">HOME</a>
+
+    <div id = "endGame">
+      <form method="post">
+        <input type="hidden" id="scoreInput" name="score" value="<%- score %>">
+        <input type="hidden" id="catUrl" name="url" value="0">
+        <input type="text" id="name" name = "name" placeholder="Name">
+        <img src = "none.jpg" alt = "none" name = "cat" id="cat">
+        <button type="button" onclick="switchCat()">Switch Cat</button>
+        <input type="submit">
+      </form>
+    </div>
+
   </body>
+
+  <script>
+      function switchCat(){
+        console.log("CAT")
+        let cat = document.getElementById("cat")
+
+        fetch("https://api.thecatapi.com/v1/images/search")
+            .then((response) => response.json())  
+            .then((data) => {
+              cat.src = data[0].url;
+              document.getElementById("catUrl").value = data[0].url;
+            });   
+      }
+
+  </script>
+
+  <style>
+    #endGame{
+      background-color: rgb(243, 243, 243);
+    }
+    img{
+      width: 200px;
+      height: 200px;
+    }
+  </style>
 </html>
 
 <script>

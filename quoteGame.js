@@ -56,6 +56,11 @@ async function main(){
             response.render("index");
         });
 
+        app.get("/gameOver", (request, response) => {
+            const score = request.query.score;
+            response.render("gameOver", { score });
+        });
+
         app.get("/game", (request, response) => {
             response.render("game");
         });
@@ -76,99 +81,15 @@ async function main(){
             }
           });
 
-        app.post("/game", async (request, response) => {
+        app.post("/gameOver", async (request, response) => {
             console.log(request.body)
             const { name, score, url} = request.body;
             const numericScore = Number(score);
             await collection.insertOne({ name, score: numericScore, url });
 
-            const variables = { score }; // Pass the score to the template
-
-            response.render("gameOver", variables);
+            response.render("index");
         });
           
-        // app.get("/reviewApplication", (request, response) => {
-        //     const variables = {  pn: portNumber  };
-
-        //     response.render("reviewApplication", variables);
-        // });
-
-        // app.use(bodyParser.urlencoded({extended:false}));
-
-        // app.post("/reviewApplication", async (request, response) => {
-        //     let query = { email: request.body.email };
-        //     let result = await collection.findOne(query);
-
-        //     if (!result || result === null) {
-        //         const variables = {
-        //             name: "NONE",
-        //             email: "NONE",
-        //             gpa: "NONE",
-        //             bginfo: "NONE"
-        //         }
-        //         response.render("returnApplication", variables);
-        //     } else {
-        //         const variables = {
-        //             name: result.name,
-        //             email: result.email,
-        //             gpa: result.gpa,
-        //             bginfo: result.bginfo
-        //         };
-        //         response.render("returnApplication", variables);
-        //     }
-        // });
-
-        // app.get("/selectByGPA", (request, response) => {
-        //     const variables = {  pn: portNumber  };
-
-        //     response.render("selectByGPA", variables);
-        // });
-
-        // app.use(bodyParser.urlencoded({extended:false}));
-
-        // app.post("/selectByGPA", async (request, response) => {
-        //     filter = { gpa: { $gte: request.body.gpa }};
-        //     const cursor = collection.find(filter);
-        //     result = await cursor.toArray();
-
-        //     if (!result || result === null) {
-        //         const variables = {
-        //             name: "NONE",
-        //             email: "NONE",
-        //             gpa: "NONE",
-        //             bginfo: "NONE"
-        //         }
-        //         response.render("returnListGPA", variables);
-        //     } else {
-        //         let res = `<table border="1">
-        //                         <tr>
-        //                             <th>Name</th>
-        //                             <th>GPA</th>
-        //                         </tr>`;
-        //         result.forEach(a => {
-        //             res += `<tr><td>${a.name}</td><td>${parseFloat(a.gpa).toFixed(2)}</td></tr>`;
-        //         });
-        //         res += `</table>`;
-
-        //         const variables = {  itemsTable: res  };
-        //         response.render("returnListGPA", variables);
-        //     }
-        // });
-
-        // app.get("/removeAllApplications", (request, response) => {
-        //     const variables = {  pn: portNumber  };
-
-        //     response.render("delete", variables);
-        // });
-
-        // app.post("/removeAllApplications", async (request, response) => {
-        //     filter = { };
-        //     const result = await collection.deleteMany(filter);
-
-        //     const variables = {  numDeleted: result.deletedCount  };
-        //     response.render("deleted", variables);
-        // });
-
     } catch (e) {
         console.error(e);
         process.exit(1);

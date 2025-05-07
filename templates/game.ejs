@@ -14,17 +14,6 @@
       Lives: <p id="lives">3</p>
     </div>
 
-    <div id = "endGame" style="display:none;">
-      <form method="post">
-        <input type="hidden" id="scoreInput" name="score" value="0">
-        <input type="hidden" id="catUrl" name="url" value="0">
-        <input type="text" id="name" name = "name" placeholder="Name">
-        <img src = "none.jpg" alt = "none" name = "cat" id="cat">
-        <button type="button" onclick="switchCat()">Switch Cat</button>
-        <input type="submit">
-      </form>
-    </div>
-
     <script>
       let answers = ["Kanye", "Trump"];
       let answer = "";
@@ -54,25 +43,9 @@
         }
       }
 
-      function endGame(){
-          document.getElementById("endGame").style.display = "block";
-          document.getElementById("scoreInput").value = score;
-          // let name = document.getElementById("name").value
-
-          // if(!name){
-          //   window.alert("invalid");
-          //   return;
-          // }
-          
-          // fetch("/game", {
-          //   method: "POST",
-          //   headers: {
-          //     "Content-Type": "application/json",
-          //   },
-          //   body: JSON.stringify({ name: name, score: Number(score) }),
-          // });
+      function endGame() {
+        window.location.href = `/gameOver?score=${score}`;
       }
-
       function checkAns(ans) {
         if (answer.toLowerCase() === ans) {
           console.log("true");
@@ -84,18 +57,6 @@
           document.getElementById("lives").innerHTML = lives;
         }
         generateQuestion();
-      }
-
-      function switchCat(){
-        console.log("CAT")
-        let cat = document.getElementById("cat")
-
-        fetch("https://api.thecatapi.com/v1/images/search")
-            .then((response) => response.json())  
-            .then((data) => {
-              cat.src = data[0].url;
-              document.getElementById("catUrl").value = data[0].url;
-            });   
       }
 
       generateQuestion();
