@@ -42,7 +42,9 @@ async function main(){
     client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 }); // Assign to the global client variable
 
     app.set("view engine", "ejs");
-    app.set("views", path.resolve(__dirname, "templates"));
+    app.set("views", path.resolve(__dirname, "client"));
+    app.use('/styles', express.static(path.join(__dirname, 'client/styles')));
+    app.use('/assets', express.static(path.join(__dirname, 'client/assets')));
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(express.json()); 
 

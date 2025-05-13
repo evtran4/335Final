@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Game</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./styles/leaderboard.css">
+    </head>
+
+    <body>
+        <div class="title">Leader Board:</div>
+
+        <div class="podium">
+            <div class="podiumContainer">
+                <h1 class="name"><%= second.name %></h1>
+                <div class="second podiumBody">
+                    <h1>2nd</h1>
+                    <img src="<%= second.url %>" alt="second place cat">
+                    <p>Score: <%= second.score %></p>
+                </div>
+            </div>
+
+            <div class="podiumContainer">
+                <h1 class="name"><%= first.name %></h1>
+                <div class="first podiumBody">
+                    <h1>1st</h1>
+                    <img src="<%= first.url %>" alt="first place cat">
+                    <p>Score: <%= first.score %></p>
+                </div>
+            </div>
+
+
+            <div class="podiumContainer">
+                <h1 class="name"><%= third.name %></h1>
+                <div class="third podiumBody">
+                    <h1>3rd</h1>
+                    <img src="<%= third.url %>" alt="third place cat">
+                    <p>Score: <%= third.score %></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
