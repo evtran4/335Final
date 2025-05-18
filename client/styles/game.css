@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Felipa&family=Poetsen+One&display=swap');
+
+html, body{
+    display: flex;
+    flex-direction: column;
+    background-color: #6200ea;
+    height: 100%;
+    width: 100%;
+    margin:0px;
+}
+
+.text{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+button{
+    width: 50px;
+    flex: 0;
+}
+.stats, h1, h2, h3, p {
+    font-family: 'Poetsen One', sans-serif;
+    color: white;
+}
+.backArrow{
+    height: 80px;
+    width: auto;
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 30px;;
+    transition: 0.4s;
+}
+
+.images{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.images > img {
+    width: 200px;
+    height: 200px;
+    transition: 0.3s;
+}
+
+.images>img:hover{
+    transform: translateY(-5px);
+}
+
+.backArrow:hover{
+    transform: translateX(7px);
+}
+.title{
+    font-size: 50px;
+    font-family: 'Poetsen One', sans-serif;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 20px;
+}

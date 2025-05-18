@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Felipa&family=Poetsen+One&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poetsen One', sans-serif;
     text-align: center;
     background-color: rgb(247, 247, 247);
     color: #333;

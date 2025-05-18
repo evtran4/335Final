@@ -3,13 +3,26 @@
   <head>
     <title>Game</title>
     <meta charset="utf-8" />
+     <link rel="stylesheet" href="./styles/game.css">
   </head>
   <body>
-    <h3 id="name">Donald Trump or Kanye West?</h3>
-    <p id="question">None</p>
-    <button onclick="checkAns('kanye')">Kanye</button>
-    <button onclick="checkAns('trump')">Trump</button><br />
-    <div class="stats">
+
+    <a href="/"><img class = "backArrow" src="./assets/backArrow.png"></a>
+
+    <div class="title">
+      <h3 id="name">Donald Trump or Kanye West?</h3>
+    </div>
+
+    <div class="text">
+      <h2 id="question">None</h2>
+    </div>
+
+    <div class = "images">
+        <img onclick="checkAns('kanye')" src = "assets/kanye.png">
+        <img onclick="checkAns('trump')" src = "assets/trump.png">
+    </div>
+
+    <div class="stats text">
       Score: <p id="score">0</p>
       Lives: <p id="lives">3</p>
     </div>

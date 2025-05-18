@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Felipa&family=Poetsen+One&display=swap');
+
 html, body{
     display: flex;
     flex-direction: column;
@@ -5,7 +7,9 @@ html, body{
     height: 100%;
     width: 100%;
     margin:0px;
-    justify-content: center;
+}
+h1, h2, h3, p {
+    font-family: 'Poetsen One', sans-serif;
 }
 .podium{
     width: 100%;
@@ -53,22 +57,36 @@ html, body{
     height: 400px;
     background: rgb(255, 165, 62);
     border-top-right-radius: 5px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3)
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
 }
 .title{
-    font-size: 30px;
+    font-size: 50px;
+    font-family: 'Poetsen One', sans-serif;
     width: 100%;
     display: flex;
     justify-content: center;
+    color: white;
+    margin-top: 20px;
 }
-
 .name{
     color: white;
     animation-name: bounce;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     transform-origin: center center;
+}
+
+.backArrow{
+    height: 80px;
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 30px;;
+    transition: 0.4s;
+}
+
+.backArrow:hover{
+    transform: translateX(7px);
 }
 
 @keyframes bounce {
