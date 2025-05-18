@@ -3,28 +3,46 @@
   <head>
     <title>Game</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="./styles/gameOver.css">
   </head>
 
   <body>
-    <h1>Game Over!</h1>
-    Your Score: <%- score %> <br>
-    <br><hr>
-    <a href="/">HOME</a>
+    <a href="/"><img class = "backArrow" src="./assets/backArrow.png"></a>
 
-    <div id = "endGame">
-      <form method="post">
+    <div class="title">
+      <h3 id="name">Game Over!</h3>
+    </div>
+
+    <div class = "center">
+      <h1>Your Score: <%- score %></h1>
+    </div>
+
+    <div class="endGameContainer">
+      <form id="endGame" method="post">
+        <h2><u>Save your score</u></h2>
+        
+        <!--hidden input values to submit score in form-->
         <input type="hidden" id="scoreInput" name="score" value="<%- score %>">
         <input type="hidden" id="catUrl" name="url" value="0">
-        <input type="text" id="name" name = "name" placeholder="Name">
+
+        <div class="formRow">
+          <p>Input Name:</p>
+          <input type="text" id="name" name = "name" placeholder="Name">
+        </div>
+
         <img src = "none.jpg" alt = "none" name = "cat" id="cat">
-        <button type="button" onclick="switchCat()">Switch Cat</button>
-        <input type="submit">
+
+        <div class="formRow">
+          <button type="button" onclick="switchCat()">Switch Cat</button>
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
 
   </body>
 
   <script>
+      switchCat()
       function switchCat(){
         console.log("CAT")
         let cat = document.getElementById("cat")
@@ -36,18 +54,7 @@
               document.getElementById("catUrl").value = data[0].url;
             });   
       }
-
   </script>
-
-  <style>
-    #endGame{
-      background-color: rgb(243, 243, 243);
-    }
-    img{
-      width: 200px;
-      height: 200px;
-    }
-  </style>
 </html>
 
 <script>

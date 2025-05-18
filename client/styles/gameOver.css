@@ -9,19 +9,30 @@ html, body{
     margin:0px;
 }
 
-.text{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-}
-button{
-    width: 50px;
-    flex: 0;
-}
-.stats, h1, h2, h3, p {
+h1, h2, h3, p {
     font-family: 'Poetsen One', sans-serif;
     color: white;
+}
+
+.endGameContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#endGame{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #5000bf;
+    border: 5px solid #41009d;
+    border-radius: 20px;
+    width: 80%;
+    padding: 1%;
+}
+img{
+    width: 200px;
+    height: 200px;
 }
 .backArrow{
     height: 80px;
@@ -30,23 +41,6 @@ button{
     margin-left: 30px;
     margin-top: 30px;;
     transition: 0.4s;
-}
-
-.images{
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-}
-.imageContainer > img {
-    width: 200px;
-    height: 200px;
-}
-.imageContainer{
-    text-align: center;
-    transition: 0.2s;
-}
-.imageContainer:hover{
-    transform: translateY(-5px);
 }
 .backArrow:hover{
     transform: translateX(7px);
@@ -60,35 +54,36 @@ button{
     color: white;
     margin-top: 20px;
 }
-
-.stats{
-    font-size: 30px;
+.formRow{
     display: flex;
     gap: 10px;
+    height: 30px;
     align-items: center;
+    font-size: 20px;
 }
 
-.resultImgContainer{
+.center{
     width: 100%;
-    height: 200px;
     display: flex;
     justify-content: center;
 }
-#resultImg{
-    width: 150px;
-    display: none;
-    animation-name: popup;
-    animation-duration: 2s;
+button{
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #6f12f2;
+    border-radius: 5px;
+    border: 2px solid #3d0092;
+    transition: 0.2s;
+}
+button:hover{
+    background-color: #530db6;
 }
 
-@keyframes popup {
-    0%{
-        opacity: 0%;
-    }
-    50%{
-        opacity: 100%;
-    }
-    100%{
-        opacity: 0%;
-    }
+#cat {
+    margin: 30px;
+    height: 300px;
+    width: auto;
 }

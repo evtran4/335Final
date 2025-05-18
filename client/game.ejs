@@ -3,7 +3,7 @@
   <head>
     <title>Game</title>
     <meta charset="utf-8" />
-     <link rel="stylesheet" href="./styles/game.css">
+    <link rel="stylesheet" href="./styles/game.css">
   </head>
   <body>
 
@@ -18,8 +18,18 @@
     </div>
 
     <div class = "images">
-        <img onclick="checkAns('kanye')" src = "assets/kanye.png">
+      <div class="imageContainer">
+        <img onclick="checkAns('kanye')" src = "assets/kanye.png"> 
+        <p>Kanye West</p>
+      </div>
+      <div class="imageContainer">
         <img onclick="checkAns('trump')" src = "assets/trump.png">
+        <p>Trump</p>
+      </div>
+    </div>
+
+    <div class="resultImgContainer">
+      <img id="resultImg" src = "none">
     </div>
 
     <div class="stats text">
@@ -29,10 +39,17 @@
 
     <script>
       let answers = ["Kanye", "Trump"];
+      let correct = ["./assets/correct1.jpg", "./assets/correct2.webp", "./assets/correct3.gif"]
       let answer = "";
       let score = 0;
       let lives = 3;
       let question = document.getElementById("question");
+
+      const resultImg = document.getElementById("resultImg");
+
+      resultImg.addEventListener("animationend", () => {
+        resultImg.style.display = "none";
+      });
 
       function generateQuestion() {
         if (lives > 0) {
@@ -61,11 +78,14 @@
       }
       function checkAns(ans) {
         if (answer.toLowerCase() === ans) {
-          console.log("true");
+          resultImg.src = correct[Math.floor(Math.random() * correct.length)]
+          resultImg.style.display = "block";
           score++;
           document.getElementById("score").innerHTML = score;
         } else {
           console.log("false");
+          resultImg.src = "./assets/incorrect1.webp"
+          resultImg.style.display = "block";
           lives = lives - 1;
           document.getElementById("lives").innerHTML = lives;
         }
@@ -75,21 +95,4 @@
       generateQuestion();
     </script>
   </body>
-
-  <style>
-    .stats{
-      display: flex;
-      gap: 10px;
-    }
-    .stats > p {
-      margin: 0;
-    }
-    #endGame{
-      background-color: rgb(243, 243, 243);
-    }
-    img{
-      width: 200px;
-      height: 200px;
-    }
-  </style>
 </html>
